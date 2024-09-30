@@ -9,7 +9,7 @@ using Serilog;
 
 namespace OCRmyPDF_Server
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
@@ -125,8 +125,7 @@ namespace OCRmyPDF_Server
                     });
                 });
             }
-#if DEBUG
-            else
+            else if (builder.Environment.IsDevelopment())
             {
                 builder.Logging.AddOpenTelemetry(logging =>
                 {
@@ -146,7 +145,6 @@ namespace OCRmyPDF_Server
                     .AddConsoleExporter();
                 });
             }
-#endif
         }
     }
 }
