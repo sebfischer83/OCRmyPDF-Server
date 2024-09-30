@@ -1,0 +1,6 @@
+@OCRmyPDF_Server_HostAddress = http://localhost:5285
+
+GET {{OCRmyPDF_Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E7D8C9AF-2B3D-4260-A4CE-0A224A3514FF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projektmappenelemente", "Projektmappenelemente", "{B09A87AC-C8D1-4EFC-9E21-6C81D819EF09}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OCRmyPDF-Server", "src\OCRmyPDF-Server\OCRmyPDF-Server.csproj", "{B1EC5F05-4FB1-40F9-8503-6B3713017D5A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7D8C9AF-2B3D-4260-A4CE-0A224A3514FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7D8C9AF-2B3D-4260-A4CE-0A224A3514FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7D8C9AF-2B3D-4260-A4CE-0A224A3514FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7D8C9AF-2B3D-4260-A4CE-0A224A3514FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1EC5F05-4FB1-40F9-8503-6B3713017D5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1EC5F05-4FB1-40F9-8503-6B3713017D5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1EC5F05-4FB1-40F9-8503-6B3713017D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1EC5F05-4FB1-40F9-8503-6B3713017D5A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {04F1B270-80AD-4065-9F07-559348B3BA89}
+	EndGlobalSection
+EndGlobal

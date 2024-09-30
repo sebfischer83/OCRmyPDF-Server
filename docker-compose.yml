@@ -1,0 +1,17 @@
+version: '3.4'
+
+volumes:
+  upload:
+  working:
+  sql:
+
+services:
+  ocrmypdf-server:
+    image: ${DOCKER_REGISTRY-}ocrmypdfserver
+    build:
+      context: .
+      dockerfile: src/OCRmyPDF-Server/Dockerfile
+    volumes:
+      - upload:/var/upload
+      - working:/var/working
+ 
