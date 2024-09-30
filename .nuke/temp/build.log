@@ -1,0 +1,119 @@
+21:19:09.885 | V |                      | ArgumentsFromParametersFile.OnBuildCreated (150)
+21:19:09.900 | V |                      | HandleReSharperSurrogateArguments.OnBuildCreated (150)
+21:19:09.901 | V |                      | InjectParameterValues.OnBuildCreated (100)
+21:19:09.919 | V |                      | HandleShellCompletion.OnBuildCreated (75)
+21:19:10.185 | V |                      | GenerateBuildServerConfigurations.OnBuildCreated (50)
+21:19:10.186 | V |                      | InvokeBuildServerConfigurationGeneration.OnBuildCreated (45)
+21:19:10.193 | V |                      | UpdateNotification.OnBuildCreated (10)
+21:19:10.193 | V |                      | UnsetVisualStudioEnvironmentVariables.OnBuildCreated (0)
+21:19:10.200 | V |                      | HandleVisualStudioDebugging.OnBuildCreated (0)
+21:19:10.201 | V |                      | EventInvoker.OnBuildCreated (-3.4028235E+38)
+21:19:10.217 | V |                      | HandlePlanRequests.OnBuildInitialized (10)
+21:19:10.217 | V |                      | HandleHelpRequests.OnBuildInitialized (5)
+21:19:10.217 | V |                      | Telemetry.OnBuildInitialized (0)
+21:19:10.622 | V |                      | Sending BuildStarted telemetry event ...
+21:19:10.623 | V |                      |   build_components         = 
+21:19:10.623 | V |                      |   build_type               = Project
+21:19:10.623 | V |                      |   compile_time             = 4
+21:19:10.623 | V |                      |   config_generators        = 
+21:19:10.623 | V |                      |   host                     = VisualStudio
+21:19:10.623 | V |                      |   num_custom_components    = 0
+21:19:10.623 | V |                      |   num_custom_extensions    = 0
+21:19:10.623 | V |                      |   num_partitioned_targets  = 0
+21:19:10.623 | V |                      |   num_secrets              = 0
+21:19:10.623 | V |                      |   num_targets              = 3
+21:19:10.623 | V |                      |   os_architecture          = X64
+21:19:10.623 | V |                      |   os_platform              = Windows
+21:19:10.623 | V |                      |   repo_branch              = main
+21:19:10.623 | V |                      |   repo_commit              = 09cd01
+21:19:10.623 | V |                      |   repo_provider            = GitHub
+21:19:10.623 | V |                      |   repo_url                 = a7e3b4
+21:19:10.623 | V |                      |   target_framework         = .NETCoreApp,Version=v8.0
+21:19:10.623 | V |                      |   version_dotnet_sdk       = 8.0.400
+21:19:10.623 | V |                      |   version_nuke_common      = 8.1.0
+21:19:10.623 | V |                      |   version_nuke_global_tool = 8.1.0
+21:19:10.838 | V |                      | InjectNonParameterValues.OnBuildInitialized (-100)
+21:19:10.910 | I |                      | > "C:\Program Files\dotnet\dotnet.exe" C:\Users\sebfi\.nuget\packages\gitversion.tool\5.12.0\tools\net6.0\any\gitversion.dll /nocache
+21:19:10.914 | V |                      | @ C:\Development\OCRmyPDF-Server
+21:19:11.246 | V |                      | EventInvoker.OnBuildInitialized (-3.4028235E+38)
+21:19:11.254 | V | Restore              | EventInvoker.OnTargetRunning (-3.4028235E+38)
+21:19:11.255 | I | Restore              | Commit = 8203ebc1d816499928c166e3d75ebcfb26adb7ae
+21:19:11.255 | I | Restore              | Branch = master
+21:19:11.256 | I | Restore              | Tags = []
+21:19:11.258 | I | Restore              | main/master branch = True
+21:19:11.259 | I | Restore              | release/* branch = False
+21:19:11.260 | I | Restore              | hotfix/* branch = False
+21:19:11.260 | I | Restore              | Https URL = https://github.com/sebfischer83/OCRmyPDF-Server.git
+21:19:11.261 | I | Restore              | SSH URL = git@github.com:sebfischer83/OCRmyPDF-Server.git
+21:19:11.261 | I | Restore              | GitVersion = 0.1.0+4
+21:19:11.264 | I | Restore              | > "C:\Program Files\dotnet\dotnet.exe" restore C:\Development\OCRmyPDF-Server\OCRmyPDF-Server.sln
+21:19:11.265 | V | Restore              | @ C:\Development\OCRmyPDF-Server
+21:19:11.686 | D | Restore              |   Wiederherzustellende Projekte werden ermittelt...
+21:19:11.809 | D | Restore              |   Alle Projekte sind für die Wiederherstellung auf dem neuesten Stand.
+21:19:11.828 | V | Restore              | Telemetry.OnTargetSucceeded (0)
+21:19:11.931 | V | Restore              | Sending TargetSucceeded telemetry event ...
+21:19:11.931 | V | Restore              |   build_components         = 
+21:19:11.931 | V | Restore              |   build_type               = Project
+21:19:11.931 | V | Restore              |   compile_time             = 6
+21:19:11.931 | V | Restore              |   config_generators        = 
+21:19:11.931 | V | Restore              |   host                     = VisualStudio
+21:19:11.932 | V | Restore              |   num_custom_components    = 0
+21:19:11.932 | V | Restore              |   num_custom_extensions    = 0
+21:19:11.932 | V | Restore              |   num_partitioned_targets  = 0
+21:19:11.932 | V | Restore              |   num_secrets              = 0
+21:19:11.932 | V | Restore              |   num_targets              = 3
+21:19:11.932 | V | Restore              |   os_architecture          = X64
+21:19:11.932 | V | Restore              |   os_platform              = Windows
+21:19:11.932 | V | Restore              |   repo_branch              = main
+21:19:11.932 | V | Restore              |   repo_commit              = 09cd01
+21:19:11.932 | V | Restore              |   repo_provider            = GitHub
+21:19:11.932 | V | Restore              |   repo_url                 = a7e3b4
+21:19:11.932 | V | Restore              |   target_current_partition = 1
+21:19:11.932 | V | Restore              |   target_duration          = 1
+21:19:11.932 | V | Restore              |   target_framework         = .NETCoreApp,Version=v8.0
+21:19:11.932 | V | Restore              |   target_name              = Restore
+21:19:11.932 | V | Restore              |   target_total_partitions  = 1
+21:19:11.932 | V | Restore              |   version_dotnet_sdk       = 8.0.400
+21:19:11.932 | V | Restore              |   version_nuke_common      = 8.1.0
+21:19:11.932 | V | Restore              |   version_nuke_global_tool = 8.1.0
+21:19:12.020 | V | Restore              | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
+21:19:12.024 | V | Compile              | EventInvoker.OnTargetRunning (-3.4028235E+38)
+21:19:12.032 | I | Compile              | > "C:\Program Files\dotnet\dotnet.exe" build C:\Development\OCRmyPDF-Server\OCRmyPDF-Server.sln --configuration Debug --no-restore /property:AssemblyVersion=0.1.0.0 /property:FileVersion=0.1.0.0 /property:InformationalVersion=0.1.0+4.Branch.master.Sha.8203ebc1d816499928c166e3d75ebcfb26adb7ae
+21:19:12.033 | V | Compile              | @ C:\Development\OCRmyPDF-Server
+21:19:14.804 | D | Compile              |   OCRmyPDF-Server -> C:\Development\OCRmyPDF-Server\src\OCRmyPDF-Server\bin\Debug\net8.0\OCRmyPDF-Server.dll
+21:19:14.874 | D | Compile              | 
+21:19:14.875 | D | Compile              | Der Buildvorgang wurde erfolgreich ausgeführt.
+21:19:14.876 | D | Compile              |     0 Warnung(en)
+21:19:14.876 | D | Compile              |     0 Fehler
+21:19:14.877 | D | Compile              | 
+21:19:14.877 | D | Compile              | Verstrichene Zeit 00:00:02.69
+21:19:14.904 | V | Compile              | Telemetry.OnTargetSucceeded (0)
+21:19:15.009 | V | Compile              | Sending TargetSucceeded telemetry event ...
+21:19:15.009 | V | Compile              |   build_components         = 
+21:19:15.009 | V | Compile              |   build_type               = Project
+21:19:15.009 | V | Compile              |   compile_time             = 9
+21:19:15.009 | V | Compile              |   config_generators        = 
+21:19:15.009 | V | Compile              |   host                     = VisualStudio
+21:19:15.009 | V | Compile              |   num_custom_components    = 0
+21:19:15.009 | V | Compile              |   num_custom_extensions    = 0
+21:19:15.009 | V | Compile              |   num_partitioned_targets  = 0
+21:19:15.009 | V | Compile              |   num_secrets              = 0
+21:19:15.009 | V | Compile              |   num_targets              = 3
+21:19:15.009 | V | Compile              |   os_architecture          = X64
+21:19:15.009 | V | Compile              |   os_platform              = Windows
+21:19:15.009 | V | Compile              |   repo_branch              = main
+21:19:15.009 | V | Compile              |   repo_commit              = 09cd01
+21:19:15.009 | V | Compile              |   repo_provider            = GitHub
+21:19:15.009 | V | Compile              |   repo_url                 = a7e3b4
+21:19:15.009 | V | Compile              |   target_current_partition = 1
+21:19:15.009 | V | Compile              |   target_duration          = 3
+21:19:15.009 | V | Compile              |   target_framework         = .NETCoreApp,Version=v8.0
+21:19:15.009 | V | Compile              |   target_name              = Compile
+21:19:15.009 | V | Compile              |   target_total_partitions  = 1
+21:19:15.009 | V | Compile              |   version_dotnet_sdk       = 8.0.400
+21:19:15.009 | V | Compile              |   version_nuke_common      = 8.1.0
+21:19:15.009 | V | Compile              |   version_nuke_global_tool = 8.1.0
+21:19:15.044 | V | Compile              | EventInvoker.OnTargetSucceeded (-3.4028235E+38)
+21:19:15.053 | V |                      | UpdateNotification.OnBuildFinished (10)
+21:19:15.054 | V |                      | SerializeBuildServerState.OnBuildFinished (0)
+21:19:15.054 | V |                      | EventInvoker.OnBuildFinished (-3.4028235E+38)

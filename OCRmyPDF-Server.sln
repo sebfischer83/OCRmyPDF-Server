@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projektmappenelemente", "Projektmappenelemente", "{B09A87AC-C8D1-4EFC-9E21-6C81D819EF09}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		GitVersion.yml = GitVersion.yml
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
@@ -15,6 +16,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OCRmyPDF-Server", "src\OCRmyPDF-Server\OCRmyPDF-Server.csproj", "{B1EC5F05-4FB1-40F9-8503-6B3713017D5A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{09AE8E2B-B5BD-45A4-B570-357715A419EC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{F6D01194-BE47-4B2C-8608-BB14860E9957}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{51CCE69A-3F3D-426E-B445-7DDDFAAEC89E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,12 +35,15 @@ Global
 		{B1EC5F05-4FB1-40F9-8503-6B3713017D5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1EC5F05-4FB1-40F9-8503-6B3713017D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1EC5F05-4FB1-40F9-8503-6B3713017D5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6D01194-BE47-4B2C-8608-BB14860E9957}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6D01194-BE47-4B2C-8608-BB14860E9957}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B1EC5F05-4FB1-40F9-8503-6B3713017D5A} = {09AE8E2B-B5BD-45A4-B570-357715A419EC}
+		{F6D01194-BE47-4B2C-8608-BB14860E9957} = {51CCE69A-3F3D-426E-B445-7DDDFAAEC89E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {04F1B270-80AD-4065-9F07-559348B3BA89}
