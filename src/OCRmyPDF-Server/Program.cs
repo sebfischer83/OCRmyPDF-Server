@@ -1,5 +1,11 @@
 
+using Microsoft.AspNetCore.ResponseCompression;
 using OCRmyPDF_Server.Services;
+using OpenTelemetry.Logs;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
+using Serilog;
 
 namespace OCRmyPDF_Server
 {
@@ -11,6 +17,25 @@ namespace OCRmyPDF_Server
 
             // Add services to the container.
             builder.Services.AddTransient<ConverterService>();
+            builder.Configuration.AddEnvironmentVariables("OCRMYPDFSERVER__");
+
+            string? telemtry = builder.Configuration["Telemetry:Server"];
+            string? telemtryHeaderKey = builder.Configuration["Telemetry:HeaderKey"];
+            string? telemtryHeaderValue = builder.Configuration["Telemetry:HeaderValue"];
+            builder.Host.UseSerilog((context, configuration) =>
+            {
+                configuration.ReadFrom.Configuration(context.Configuration);
+                if (!string.IsNullOrWhiteSpace(telemtry) && Uri.IsWellFormedUriString(telemtry, UriKind.Absolute))
+                    configuration.WriteTo.OpenTelemetry(conf =>
+                    {
+                        conf.Endpoint = telemtry;
+                        if (!string.IsNullOrWhiteSpace(telemtryHeaderKey) && !string.IsNullOrWhiteSpace(telemtryHeaderValue))
+                        {
+                            conf.Headers.Add(telemtryHeaderKey, telemtryHeaderValue);
+                        }
+                    });
+            });
+
             builder.Services.AddRequestTimeouts(c =>
             {
                 c.DefaultPolicy = new Microsoft.AspNetCore.Http.Timeouts.RequestTimeoutPolicy()
@@ -18,11 +43,20 @@ namespace OCRmyPDF_Server
                     Timeout = TimeSpan.FromMinutes(3)
                 };
             });
-
+            builder.Services.AddMetrics();
+            builder.Services.AddHealthChecks();
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddResponseCompression(c =>
+            {
+                c.EnableForHttps = true;
+                c.Providers.Add<GzipCompressionProvider>();
+            });
+
+            ConfigureOpenTelemetry(builder, telemtry, telemtryHeaderKey, telemtryHeaderValue);
 
             var app = builder.Build();
 
@@ -37,10 +71,82 @@ namespace OCRmyPDF_Server
 
             app.UseAuthorization();
 
-
+            app.UseSerilogRequestLogging(options =>
+            {
+                options.IncludeQueryInRequestPath = true;
+            });
+            app.MapHealthChecks("/healthz");
             app.MapControllers();
 
             app.Run();
+        }
+
+        private static void ConfigureOpenTelemetry(WebApplicationBuilder builder, string? telemtry, string? telemtryHeaderKey, string? telemtryHeaderValue)
+        {
+            string appName = "OCRmyPDF-Server";
+            if (!string.IsNullOrWhiteSpace(telemtry) && Uri.IsWellFormedUriString(telemtry, UriKind.Absolute))
+            {
+                builder.Logging.AddOpenTelemetry(logging =>
+                {
+                    var resourceBuilder = ResourceBuilder.CreateDefault().AddService($"{appName}");
+                    logging.SetResourceBuilder(resourceBuilder).AddOtlpExporter(o =>
+                    {
+                        o.Endpoint = new Uri(telemtry);
+                        if (!string.IsNullOrWhiteSpace(telemtryHeaderKey) && !string.IsNullOrWhiteSpace(telemtryHeaderValue))
+                        {
+                            o.Headers = $"{telemtryHeaderKey}={telemtryHeaderValue}";
+                        }
+                    });
+                });
+
+                builder.Services.AddOpenTelemetry()
+                .WithMetrics(builder =>
+                {
+                    builder.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService($"{appName}")).AddAspNetCoreInstrumentation().AddRuntimeInstrumentation()
+                    .AddOtlpExporter(o =>
+                    {
+                        o.Endpoint = new Uri(telemtry);
+                        if (!string.IsNullOrWhiteSpace(telemtryHeaderKey) && !string.IsNullOrWhiteSpace(telemtryHeaderValue))
+                        {
+                            o.Headers = $"{telemtryHeaderKey}={telemtryHeaderValue}";
+                        }
+                    });
+
+                }).WithTracing(builder =>
+                {
+                    builder.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService($"{appName}")).AddAspNetCoreInstrumentation()
+                    .AddOtlpExporter(o =>
+                    {
+                        o.Endpoint = new Uri(telemtry);
+                        if (!string.IsNullOrWhiteSpace(telemtryHeaderKey) && !string.IsNullOrWhiteSpace(telemtryHeaderValue))
+                        {
+                            o.Headers = $"{telemtryHeaderKey}={telemtryHeaderValue}";
+                        }
+                    });
+                });
+            }
+#if DEBUG
+            else
+            {
+                builder.Logging.AddOpenTelemetry(logging =>
+                {
+                    var resourceBuilder = ResourceBuilder.CreateDefault().AddService($"{appName}");
+                    logging.SetResourceBuilder(resourceBuilder).AddConsoleExporter();
+                });
+
+                builder.Services.AddOpenTelemetry()
+                .WithMetrics(builder =>
+                {
+                    builder.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService($"{appName}")).AddAspNetCoreInstrumentation().AddRuntimeInstrumentation().
+                    AddConsoleExporter();
+
+                }).WithTracing(builder =>
+                {
+                    builder.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService($"{appName}")).AddAspNetCoreInstrumentation()
+                    .AddConsoleExporter();
+                });
+            }
+#endif
         }
     }
 }
