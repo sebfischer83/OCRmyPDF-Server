@@ -1,13 +1,7 @@
-assembly-versioning-scheme: MajorMinorPatch
-assembly-file-versioning-scheme: MajorMinorPatch
-mode: ContinuousDelivery
+workflow: GitFlow/v1
+mode: ContinuousDeployment
 branches:
-  master:
-    tag: ''
-  develop:
-    tag: alpha
-  release:
-    tag: beta
-ignore:
-  sha: []
-merge-message-formats: {}
+  main:
+    label: rc
+  support:
+    label: beta

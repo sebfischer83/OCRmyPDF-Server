@@ -12,6 +12,90 @@ namespace OCRmyPDF_Server.Services
             this.logger = logger;
         }
 
+        public List<string> GetInstalledLanguages()
+        {
+            List<string> list = new();
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = "tesseract";
+            startInfo.Arguments = $"--list-langs";
+            startInfo.RedirectStandardOutput = true;
+            startInfo.RedirectStandardError = true;
+            startInfo.UseShellExecute = false;
+            startInfo.CreateNoWindow = true;
+
+            using (Process process = new Process())
+            {
+                process.StartInfo = startInfo;
+
+                // Start the process
+                process.Start();
+
+                // Read the output
+                string output = process.StandardOutput.ReadToEnd();
+                string errors = process.StandardError.ReadToEnd();
+
+                // Wait for the process to exit
+                process.WaitForExit();
+
+                if (process.ExitCode != 0)
+                {
+                    logger.LogError(errors);
+                    return list;
+                }
+
+                var parts = output.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+
+                list.AddRange(parts.Skip(1));
+
+                logger.LogDebug(errors);
+
+            }
+
+            return list;
+        }
+
+        public bool InstallLanguages(string[] languages)
+        {
+            bool error = false;
+            foreach (var item in languages)
+            {
+                //  -y install tesseract-ocr-deu
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.FileName = "apt-get";
+                startInfo.Arguments = $"-y install tesseract-ocr-{item}";
+                startInfo.RedirectStandardOutput = true;
+                startInfo.RedirectStandardError = true;
+                startInfo.UseShellExecute = false;
+                startInfo.CreateNoWindow = true;
+
+                using (Process process = new Process())
+                {
+                    process.StartInfo = startInfo;
+
+                    // Start the process
+                    process.Start();
+
+                    // Read the output
+                    string output = process.StandardOutput.ReadToEnd();
+                    string errors = process.StandardError.ReadToEnd();
+
+                    // Wait for the process to exit
+                    process.WaitForExit();
+
+                    if (process.ExitCode != 0)
+                    {
+                        error = true;
+                        logger.LogError(errors);
+                    }
+
+                    logger.LogDebug(errors);
+
+                }
+            }
+
+            return error;
+        }
+
         public ConverterResult Convert(string file, string orgFileName, string[] languages)
         {
             logger.LogInformation($"Start processing file {file} - {orgFileName}");
