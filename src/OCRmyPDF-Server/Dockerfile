@@ -9,6 +9,7 @@ EXPOSE 8081
 USER root
 RUN apt-get -y update && apt -y install ocrmypdf
 RUN apt-get -y install tesseract-ocr-deu
+RUN apt-get -y install tesseract-ocr-all
 
 # Diese Stufe wird zum Erstellen des Dienstprojekts verwendet.
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
@@ -24,8 +25,6 @@ RUN dotnet build "./OCRmyPDF-Server.csproj" -c $BUILD_CONFIGURATION -o /app/buil
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./OCRmyPDF-Server.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
-
-HEALTHCHECK --interval=10s --timeout=10s --retries=3 CMD curl --silent --fail http://localhost:8080/healthz || exit 1
 
 # Diese Stufe wird in der Produktion oder bei Ausführung von VS im regulären Modus verwendet (Standard, wenn die Debugkonfiguration nicht verwendet wird).
 FROM base AS final

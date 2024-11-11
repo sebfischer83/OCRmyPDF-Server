@@ -142,8 +142,8 @@ namespace OCRmyPDF_Server.Services
 
         private (string Pdf, string Txt) GetOutputFileNames(string file)
         {
-            string pdf = Path.GetFileName(file);
-            pdf = Path.Combine("/var", "working", pdf);
+            string pdf = "converted-" + Path.GetFileName(file);
+            pdf = Path.Combine(Path.GetTempPath(), pdf);
             string txt = Path.ChangeExtension(pdf, "txt");
             return new(pdf, txt);
         }

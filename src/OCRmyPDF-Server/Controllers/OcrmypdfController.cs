@@ -53,7 +53,7 @@ namespace OCRmyPDF_Server.Controllers
         [Route("Convert")]
         public async Task<IActionResult> Convert([FromForm] ConvertRequest convertRequest)
         {
-            string targetPath = Path.Combine("/var", "upload", Guid.NewGuid().ToString("N") + ".pdf");
+            string targetPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N") + ".pdf");
             using (var memory = new MemoryStream())
             {
                 await convertRequest.File.CopyToAsync(memory);
