@@ -6,13 +6,15 @@ USER app
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
+
+
+# Diese Stufe wird zum Erstellen des Dienstprojekts verwendet.
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 USER root
 RUN apt-get -y update && apt -y install ocrmypdf
 RUN apt-get -y install tesseract-ocr-deu
 RUN apt-get -y install tesseract-ocr-all
-
-# Diese Stufe wird zum Erstellen des Dienstprojekts verwendet.
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+USER app
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/OCRmyPDF-Server/OCRmyPDF-Server.csproj", "src/OCRmyPDF-Server/"]

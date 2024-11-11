@@ -9,6 +9,15 @@ using Serilog;
 
 namespace OCRmyPDF_Server
 {
+    /*
+     * 
+     * USER root
+RUN apt-get -y update && apt -y install ocrmypdf
+RUN apt-get -y install tesseract-ocr-deu
+RUN apt-get -y install tesseract-ocr-all
+
+     * 
+     * */
     public static class Program
     {
         public static void Main(string[] args)
@@ -82,6 +91,7 @@ namespace OCRmyPDF_Server
 
         private static void ConfigureOpenTelemetry(WebApplicationBuilder builder, string? telemtry, string? telemtryHeaderKey, string? telemtryHeaderValue)
         {
+            return;
             string appName = "OCRmyPDF-Server";
             if (!string.IsNullOrWhiteSpace(telemtry) && Uri.IsWellFormedUriString(telemtry, UriKind.Absolute))
             {
